@@ -126,6 +126,7 @@ if (!isset($_GET['player']) || intval($_GET['player']) <= 0) {
             <div class="navbar-inner">
                 <div class="container-fluid">
                     <a class="brand" href="#">OpenArena Statistics</a>
+                    <a class="brand" href="wiki.html">Wiki</a>
                 </div>
             </div>
         </div>
