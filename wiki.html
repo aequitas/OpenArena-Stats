@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>OpenArena Statistics</title>
+        <link href="/css/bootstrap.css" rel="stylesheet">
+        <link href="/css/style.css" rel="stylesheet">
+        <style type="text/css">
+            body {
+                padding-top: 60px;
+                padding-bottom: 40px;
+            }
+            .sidebar-nav {
+                padding: 9px 0;
+            }
+        </style>
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="brand" href="#">OpenArena Statistics</a>
+                    <a class="brand" href="#">OpenArena Statistics</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span12">
+<h2>Linux startup script with brightness settings and automatic dimming of display</h2>
+                <pre>
+# GAME SETTINGS
+server=192.168.96.55
+
+# brightness settings
+intensity=1.5 # overall brightness
+overbright=1 # brightness for ????
+mapoverbright=15 # brighten up dark spots on the map
+
+# remove fancy stuff
+#shadows=0
+#marks=0
+#oldrail=1
+#teamoverlay=2
+
+# DISPLAY SETTINGS
+DVI1=DFP2 # this is the play screen
+DVI2=DFP1 # this screen will be dimmed
+# get display names with the xrandr
+
+# dimm screens
+#xgamma -gamma 1.3
+xrandr --output $DVI2 --brightness 0
+#xrandr --output $DVI1 --brightness 1.3
+
+oa=~/openarena-0.8.8/openarena.x86_64 
+if [ ! -f "$oa" ];then
+    oa=`which openarena`
+fi
+
+# start game
+$oa +set r_intensity $intensity +set r_overBrightBits $overbright +set r_mapOverBrightBits $mapoverbright +set cg_drawTeamoverlay $teamoverlay +set cg_marks $marks +set cg_shadows $shadows +set cg_oldrail $oldrail +connect $server
+
+# restore display settings
+#xgamma -gamma 1.0
+#xrandr --output $DVI1 --mode 1680x1050
+#xrandr --output $DVI2 --mode 1680x1050 --right-of $DVI1
+xrandr --output $DVI2 --brightness 1
+#xrandr --output $DVI1 --brightness 1
+</pre>
+                </div>
+            </div>
+
+        </div>
+
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    </body>
+</html>
